@@ -12,20 +12,23 @@ export const compareTwoTimesCheckTheSecondTimeIsEarlier = (
 //Please generate a 6 digit random number string
 export const generateSixDigitRandomNumberString = (): string => {
 
-    return '';
+    const randomNumber = Math.floor(Math.random() * 900000) + 100000;
+    console.log('Running generateSixDigitRandomNumberString,\nRandomNumber:', randomNumber);
+    return `${randomNumber}`;
 };
-
-const main = (async () => {
-    /* Compare two times if the second time is earlier */
-    compareTwoTimesCheckTheSecondTimeIsEarlier('2020-01-01 00:00:00', '2020-01-01 00:00:01');
-    compareTwoTimesCheckTheSecondTimeIsEarlier('2020-01-01 00:00:01', '2020-01-01 00:00:00');
-
-})();
 
 
 /* Write a function that takes in an array of numbers and returns the largest number in the array.*/
 export const findLargestNumberInArray = (array: number[]): number => {
-    return 0;
+    let largestNumber = array[0];
+    for (let i = 1; i < array.length; i++) {
+      if (array[i] > largestNumber) { // compare each element and update global large
+        largestNumber = array[i];
+      }
+    }
+    console.log('Running findLargestNumberInArray,\nLargestNumber:', largestNumber);
+    return largestNumber;
+ 
 }
 
 /*Write a function that takes in an array of numbers and returns the sum of all of the odd numbers in the array.*/
@@ -55,7 +58,20 @@ export const smallestCommonDivisor = (number1: number, number2: number): number 
 
 /*Given a word, return if this word is palindromes. For example, ‘level’, ‘civic’, ‘kayak’ are palindromes because they reads the same way forwards and backwards.*/
 export const isPalindrome = (string: string): boolean => {
-    return false;
+    let start = 0;
+    let end = string.length - 1;
+  
+    while (start < end) { // 2 pointers
+        if (string[start] != string[end]) { 
+            console.log(`Running isPalindrome,\nPalindrome`, false);
+            return false;
+
+        }
+        start++;
+        end--;
+    }
+    console.log(`Running isPalindrome,\nPalindrome`, true);
+    return true;
 }
 
 /*Given an array of numbers, return a new array with all the even numbers doubled.*/
@@ -73,3 +89,19 @@ export const mostCommonLetterInString = (string: string): string => {
     return '';
 }
 
+
+const main = (async () => {
+    /* Compare two times if the second time is earlier */
+    compareTwoTimesCheckTheSecondTimeIsEarlier('2020-01-01 00:00:00', '2020-01-01 00:00:01');
+    compareTwoTimesCheckTheSecondTimeIsEarlier('2020-01-01 00:00:01', '2020-01-01 00:00:00');
+    generateSixDigitRandomNumberString();
+    const a = [3, 2, 9, 1];
+    findLargestNumberInArray(a);
+
+    const d = 'aabaa';
+    const e = 'abaa';
+    isPalindrome(d);
+    isPalindrome(e);
+
+
+})();
